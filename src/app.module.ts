@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { SkillModule } from './skill/skill.module';
-import { ClassModule } from './class/class.module';
+import { ClasseModule } from './classe/classe.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CacheModule } from '@nestjs/cache-manager';
 import databaseConfig from './config/database.config';
@@ -14,7 +14,7 @@ import { ConfigModule } from '@nestjs/config';
     // ConfigModule pour les variable env
     ConfigModule.forRoot(),
     UserModule,
-    ClassModule,
+    ClasseModule,
     SkillModule,
     // ORM pour connection db autoloading des entité
     TypeOrmModule.forRoot(databaseConfig()),

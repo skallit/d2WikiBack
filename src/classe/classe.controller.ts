@@ -8,61 +8,61 @@ import {
   Delete,
   UseInterceptors,
 } from '@nestjs/common';
-import { ClassService } from './class.service';
-import { CreateClassDto } from './dto/create-class.dto';
-import { UpdateClassDto } from './dto/update-class.dto';
+import { ClasseService } from './classe.service';
+import { CreateClasseDto } from './dto/create-classe.dto';
+import { UpdateClasseDto } from './dto/update-classe.dto';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { Class } from './entities/class.entity';
+import { Classe } from './entities/classe.entity';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @UseInterceptors(CacheInterceptor)
 @ApiTags('Classes')
-@Controller('class')
-export class ClassController {
-  constructor(private readonly classService: ClassService) {}
+@Controller('classe')
+export class ClasseController {
+  constructor(private readonly classeService: ClasseService) {}
 
   @Post()
   @ApiCreatedResponse({
     description: 'The classe has been successfully created.',
-    type: Class,
+    type: Classe,
   })
-  create(@Body() createClassDto: CreateClassDto) {
-    return this.classService.create(createClassDto);
+  create(@Body() createClasseDto: CreateClasseDto) {
+    return this.classeService.create(createClasseDto);
   }
 
   @Get()
   @ApiCreatedResponse({
     description: 'The classes has been successfully fetched.',
-    type: Class,
+    type: Classe,
   })
   findAll() {
-    return this.classService.findAll();
+    return this.classeService.findAll();
   }
 
   @Get(':id')
   @ApiCreatedResponse({
     description: 'The classes has been successfully fetched.',
-    type: Class,
+    type: Classe,
   })
   findOne(@Param('id') id: string) {
-    return this.classService.findOne(+id);
+    return this.classeService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiCreatedResponse({
     description: 'The classes has been successfully updated.',
-    type: Class,
+    type: Classe,
   })
-  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
-    return this.classService.update(+id, updateClassDto);
+  update(@Param('id') id: string, @Body() updateClasseDto: UpdateClasseDto) {
+    return this.classeService.update(+id, updateClasseDto);
   }
 
   @Delete(':id')
   @ApiCreatedResponse({
     description: 'The classes has been successfully deleted.',
-    type: Class,
+    type: Classe,
   })
   remove(@Param('id') id: string) {
-    return this.classService.remove(+id);
+    return this.classeService.remove(+id);
   }
 }

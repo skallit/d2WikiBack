@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Class } from 'src/class/entities/class.entity';
+import { Classe } from 'src/classe/entities/classe.entity';
 import {
   Entity,
   Column,
@@ -30,7 +30,7 @@ export class Skill {
   @Column()
   classesId: number;
 
-  @ManyToOne(() => Class, (classes) => classes.id)
+  @ManyToOne(() => Classe, (classes) => classes.id)
   @JoinColumn({ name: 'classesId' })
-  classes: Class[];
+  classes: Classe[];
 }
