@@ -5,26 +5,20 @@ import { UserModule } from './user/user.module';
 import { SkillModule } from './skill/skill.module';
 import { ClassModule } from './class/class.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/entities/user.entity';
-import { Class } from './class/entities/class.entity';
-import { Skill } from './skill/entities/skill.entity';
 import { CacheModule } from '@nestjs/cache-manager';
+import databaseConfig from './config/database.config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    // ConfigModule pour les variable env
+    ConfigModule.forRoot(),
     UserModule,
     ClassModule,
     SkillModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'secret',
-      database: 'diabloWikiDB',
-      entities: [User, Class, Skill],
-      synchronize: true,
-    }),
+    // ORM pour connection db autoloading des entité
+    TypeOrmModule.forRoot(databaseConfig()),
+    // Cache pour mettre en cache les données utilisé beaucoup de fois (reload plus rapide)
     CacheModule.register(),
   ],
   controllers: [AppController],
