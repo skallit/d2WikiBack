@@ -17,6 +17,7 @@ export class SkillService {
     skill.name = createSkillDto.name;
     skill.description = createSkillDto.description;
     skill.manaCost = createSkillDto.manaCost;
+    skill.classesId = createSkillDto.classesId;
     return this.skillRepository.save(skill);
   }
 
@@ -33,6 +34,7 @@ export class SkillService {
     skill.name = updateskillDto.name;
     skill.description = updateskillDto.description;
     skill.manaCost = updateskillDto.manaCost;
+    skill.classesId = updateskillDto.classesId;
     skill.id = id;
     return this.skillRepository.save(skill);
   }
