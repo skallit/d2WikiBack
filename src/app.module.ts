@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Class } from './class/entities/class.entity';
 import { Skill } from './skill/entities/skill.entity';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Skill } from './skill/entities/skill.entity';
       entities: [User, Class, Skill],
       synchronize: true,
     }),
+    CacheModule.register(),
   ],
   controllers: [AppController],
   providers: [AppService],
